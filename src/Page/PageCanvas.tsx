@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef } from 'react';
 import mergeRefs from 'merge-refs';
 import invariant from 'tiny-invariant';
-import warning from 'tiny-warning';
 import * as pdfjs from 'pdfjs-dist';
 
 import StructTree from '../StructTree';
@@ -34,7 +33,6 @@ export default function PageCanvas(props: PageCanvasProps) {
     _className,
     canvasBackground,
     devicePixelRatio: devicePixelRatioProps,
-    onRenderError: onRenderErrorProps,
     onRenderSuccess: onRenderSuccessProps,
     page,
     renderForms,
@@ -68,15 +66,15 @@ export default function PageCanvas(props: PageCanvasProps) {
    * Called when a page fails to render.
    */
   function onRenderError(error: Error) {
-    if (isCancelException(error)) {
-      return;
-    }
+    // if (isCancelException(error)) {
+    //   return;
+    // }
 
-    warning(false, error.toString());
+    // warning(false, error.toString());
 
-    if (onRenderErrorProps) {
-      onRenderErrorProps(error);
-    }
+    // if (onRenderErrorProps) {
+    //   onRenderErrorProps(error);
+    // }
   }
 
   const renderViewport = useMemo(
