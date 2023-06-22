@@ -78,8 +78,8 @@ export default function PageCanvas(props: PageCanvasProps) {
   }
 
   const renderViewport = useMemo(
-    () => page.getViewport({ scale: scale * devicePixelRatio, rotation: rotate }),
-    [devicePixelRatio, page, rotate, scale],
+    () => page.getViewport({ scale: scale, rotation: rotate }),
+    [page, rotate, scale],
   );
 
   const viewport = useMemo(
@@ -106,7 +106,7 @@ export default function PageCanvas(props: PageCanvasProps) {
 
     canvas.style.width = `${Math.floor(viewport.width)}px`;
     canvas.style.height = `${Math.floor(viewport.height)}px`;
-    canvas.style.visibility = 'hidden';
+    // canvas.style.visibility = 'hidden';
 
     const renderContext: RenderParameters = {
       annotationMode: renderForms ? ANNOTATION_MODE.ENABLE_FORMS : ANNOTATION_MODE.ENABLE,
@@ -117,18 +117,18 @@ export default function PageCanvas(props: PageCanvasProps) {
       renderContext.background = canvasBackground;
     }
 
-    const cancellable = page.render(renderContext);
-    const runningTask = cancellable;
+    // const cancellable = page.render(renderContext);
+    // const runningTask = cancellable;
 
-    cancellable.promise
-      .then(() => {
-        canvas.style.visibility = '';
+    // cancellable.promise
+    //   .then(() => {
+    //     canvas.style.visibility = '';
 
-        onRenderSuccess();
-      })
-      .catch(onRenderError);
+    //     onRenderSuccess();
+    //   })
+    //   .catch(onRenderError);
 
-    return () => cancelRunningTask(runningTask);
+    // return () => cancelRunningTask(runningTask);
   }
 
   useEffect(
