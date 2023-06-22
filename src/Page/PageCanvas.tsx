@@ -66,9 +66,9 @@ export default function PageCanvas(props: PageCanvasProps) {
    * Called when a page fails to render.
    */
   function onRenderError(error: Error) {
-    // if (isCancelException(error)) {
-    //   return;
-    // }
+    if (isCancelException(error)) {
+      return;
+    }
 
     // warning(false, error.toString());
 
